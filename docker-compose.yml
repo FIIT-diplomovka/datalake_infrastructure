@@ -1,10 +1,12 @@
 version: '2'
 services:
   zookeeper:
+    container_name: zookeeper
     image: wurstmeister/zookeeper:3.4.6
     ports:
      - "2181:2181"
   kafka:
+    container_name: kafka
     image: wurstmeister/kafka
     ports:
      - "9092:9092"
@@ -19,3 +21,14 @@ services:
       KAFKA_CREATE_TOPICS: "topic_test:1:1"
     volumes:
      - ./kafka_data:/var/run/docker.sock
+
+  minio:
+    container_name: minio
+    image: bitnami/minio:latest
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_DEFAULT_BUCKETS: 'staging,production'
+      MINIO_ROOT_USER: user
+      MINIO_ROOT_PASSWORD: datalake
