@@ -1,0 +1,1 @@
+docker run -p 9000:9000 -p 9001:9001 -e MINIO_DEFAULT_BUCKETS='staging,production' -e MINIO_ROOT_USER=user -e MINIO_ROOT_PASSWORD=datalake --name minio bitnami/minio:latest
