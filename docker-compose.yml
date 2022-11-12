@@ -32,3 +32,11 @@ services:
       MINIO_DEFAULT_BUCKETS: 'staging,production'
       MINIO_ROOT_USER: user
       MINIO_ROOT_PASSWORD: datalake
+  
+  postgres:
+    container_name: postgres
+    image: dominik9917/dp-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=admin
