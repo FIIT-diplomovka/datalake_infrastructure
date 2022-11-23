@@ -63,6 +63,8 @@ services:
     container_name: nginx
     image: nginx
     restart: always
+    ports:
+      - 80:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./data_link/nginx/.htpasswd:/etc/apache2/.htpasswd
