@@ -1,0 +1,62 @@
+version: '2'
+services:
+  zookeeper:
+    container_name: zookeeper
+    restart: always
+    image: wurstmeister/zookeeper:3.4.6
+  
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka
+    restart: always
+    env_file:
+      - env/kafka.env
+    volumes:
+     - ./data_link/kafka:/var/run/docker.sock
+
+  minio:
+    container_name: minio
+    restart: always
+    image: bitnami/minio:latest
+    volumes:
+      - data_link/minio:/data
+    env_file:
+      - env/minio.env
+  
+  postgres:
+    container_name: postgres
+    image: dominik9917/dp-postgres
+    restart: always
+    volumes:
+      - ./data_link/postgres:/var/lib/postgresql/data
+    env_file:
+      - env/postgres.env
+  
+  backend:
+    container_name: backend
+    image: dominik9917/dp-backend
+    restart: always
+    env_file:
+    - env/backend.env
+  
+  analyzer:
+    container_name: analyzer
+    image: dominik9917/dp-analyzer
+    restart: always
+    env_file:
+      - env/analyzer.env
+  
+  frontend:
+    container_name: frontend
+    image: dominik9917/dp-frontend
+    restart: always
+    env_file:
+      - env/frontend.env
+  
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./data_link/nginx-auth/.htpasswd:/etc/apache2/.htpasswd
