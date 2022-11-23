@@ -19,7 +19,7 @@ services:
     restart: always
     image: bitnami/minio:latest
     volumes:
-      - data_link/minio:/data
+      - ./data_link/minio:/data
     env_file:
       - env/minio.env
   
