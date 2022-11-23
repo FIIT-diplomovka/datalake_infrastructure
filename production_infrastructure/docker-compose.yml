@@ -59,4 +59,4 @@ services:
     restart: always
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./data_link/nginx-auth/.htpasswd:/etc/apache2/.htpasswd
+      - ./data_link/nginx/.htpasswd:/etc/apache2/.htpasswd
