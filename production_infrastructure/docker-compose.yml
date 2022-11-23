@@ -36,6 +36,9 @@ services:
     container_name: backend
     image: dominik9917/dp-backend
     restart: always
+    depends_on:
+      - kafka
+      - zookeeper
     env_file:
     - env/backend.env
   
@@ -43,6 +46,9 @@ services:
     container_name: analyzer
     image: dominik9917/dp-analyzer
     restart: always
+    depends_on:
+      - kafka
+      - zookeeper
     env_file:
       - env/analyzer.env
   
