@@ -1,1 +1,1 @@
-docker exec some-postgres pg_dump -U postgres postgres
+docker exec postgres pg_dump -U postgres postgres
